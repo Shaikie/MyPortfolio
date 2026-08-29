@@ -28,7 +28,10 @@ export default function Projects() {
         {visible.map((project, index) => (
           <article className="index-project project-index-card" key={project.slug}>
             <Link href={`/projects/${project.slug}`} className="project-index-cover-link" aria-label={`View ${project.name} project`}> 
-              <div className="project-index-cover"><span>{project.status}</span><Sparkles size={20} /></div>
+              <div className="project-index-cover project-preview">
+                {project.image ? <img src={project.image} alt={`${project.name} live preview`} loading="lazy" /> : <div className="project-preview-placeholder"><Sparkles size={20} /></div>}
+                <span className={project.live ? "live-badge" : "status-badge"}>{project.status}</span>
+              </div>
             </Link>
             <div className="index-main">
               <Link href={`/projects/${project.slug}`} className="index-title"><h2>{project.name}</h2><ArrowUpRight size={19} /></Link>
@@ -37,7 +40,7 @@ export default function Projects() {
               <div className="index-tech">{project.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div>
               <div className="project-actions">
                 <Link href={`/projects/${project.slug}`} className="project-action primary">View Project <ArrowUpRight size={14} /></Link>
-                {project.live ? <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-action secondary">Live <ExternalLink size={14} /></a> : null}
+                {project.live ? <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-action secondary">Live Demo <ExternalLink size={14} /></a> : null}
               </div>
             </div>
             <span className="project-index-number">{String(index + 1).padStart(2, "0")}</span>
