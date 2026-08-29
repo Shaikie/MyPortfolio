@@ -25,6 +25,8 @@ export default function Home() {
           <div className="hero-actions">
             <Link href="/projects" className="button-primary">Explore my work <ArrowUpRight size={17} /></Link>
             <a href="https://github.com/Shaikie" target="_blank" rel="noreferrer" className="button-quiet"><Github size={17} /> GitHub</a>
+            {/* TODO: Add client/public/resume.pdf before publishing this download as a working CV. */}
+            <a href="/resume.pdf" className="button-quiet" download>Download Resume <ArrowUpRight size={17} /></a>
           </div>
         </div>
         <div className="hero-visual reveal-delay">
@@ -41,35 +43,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="proof-strip section-rule">
-        <div className="proof-label"><span>NOW</span><strong>→</strong></div>
-        <div><p className="micro-label">CURRENTLY EXPLORING</p><p className="proof-value">software systems · applied AI · cybersecurity · creative technology</p></div>
-        <div className="proof-aside"><span className="status-dot" /> <span>building in public<br />one project at a time</span></div>
-      </section>
-
-      <section className="home-projects content-section">
-        <div className="section-heading"><div><p className="eyebrow"><span className="signal-bar" /> SELECTED WORK</p><h2>Things I've<br /><em>built.</em></h2></div><Link href="/projects" className="text-link">View all projects <ArrowUpRight size={15} /></Link></div>
-        <div className="project-feature-grid">
-          {featured.map((project, index) => (
-            <Link href={`/projects/${project.slug}`} className={`project-card ${index === 1 ? "project-card-offset" : ""}`} key={project.slug}>
-              <div className="card-top"><span className="card-index">0{index + 1}</span><span className="tag">{project.category}</span></div>
-              <div className="card-body"><div className={`card-image project-art project-art-${index}`} style={previewImage(project.slug) ? { backgroundImage: `linear-gradient(180deg, rgba(15,23,42,.05), rgba(15,23,42,.35)), url(${previewImage(project.slug)})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}><span>{project.status}</span></div><h3>{project.name}</h3><p>{project.description}</p></div>
-              <div className="card-footer"><span>View project</span><ArrowUpRight size={16} /></div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-systems content-section section-rule">
-        <div className="section-heading compact"><div><p className="eyebrow"><span className="signal-bar" /> WHAT I DO</p><h2>A mix of<br /><em>technical + creative.</em></h2></div><Link href="/about" className="text-link">About me <ArrowUpRight size={15} /></Link></div>
-        <div className="toolkit-row">
-          <div className="toolkit-group bento-large"><Code2 className="bento-icon" size={23} /><h3>Software Development</h3><p>Full-stack applications, backend systems, APIs, and practical tools.</p><div>{skillGroups.flatMap(g => g.items).slice(0, 5).map(item => <span key={item}>{item}</span>)}</div></div>
-          <div className="toolkit-group"><Palette className="bento-icon" size={23} /><h3>UI / UX</h3><p>Interfaces that feel clear, friendly, and worth using.</p><div><span>Design</span><span>Prototyping</span></div></div>
-          <div className="toolkit-group"><Bot className="bento-icon" size={23} /><h3>AI & Exploration</h3><p>Experimenting with AI-powered products and new ways to build.</p><div><span>AI</span><span>Automation</span></div></div>
-          <div className="toolkit-group"><ShieldCheck className="bento-icon" size={23} /><h3>Cybersecurity</h3><p>Security-minded development and curiosity about how systems break.</p><div><span>Security</span><span>Linux</span></div></div>
-        </div>
-      </section>
-
+      <section className="proof-strip section-rule"><div className="proof-label"><span>NOW</span><strong>→</strong></div><div><p className="micro-label">CURRENTLY EXPLORING</p><p className="proof-value">software systems · applied AI · cybersecurity · creative technology</p></div><div className="proof-aside"><span className="status-dot" /> <span>building in public<br />one project at a time</span></div></section>
+      <section className="home-projects content-section"><div className="section-heading"><div><p className="eyebrow"><span className="signal-bar" /> SELECTED WORK</p><h2>Things I've<br /><em>built.</em></h2></div><Link href="/projects" className="text-link">View all projects <ArrowUpRight size={15} /></Link></div><div className="project-feature-grid">{featured.map((project, index) => <Link href={`/projects/${project.slug}`} className={`project-card ${index === 1 ? "project-card-offset" : ""}`} key={project.slug}><div className="card-top"><span className="card-index">0{index + 1}</span><span className="tag">{project.category}</span></div><div className="card-body"><div className={`card-image project-art project-art-${index}`} style={previewImage(project.slug) ? { backgroundImage: `linear-gradient(180deg, rgba(15,23,42,.05), rgba(15,23,42,.35)), url(${previewImage(project.slug)})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}><span>{project.status}</span></div><h3>{project.name}</h3><p>{project.description}</p></div><div className="card-footer"><span>View project</span><ArrowUpRight size={16} /></div></Link>)}</div></section>
+      <section className="home-systems content-section section-rule"><div className="section-heading compact"><div><p className="eyebrow"><span className="signal-bar" /> WHAT I DO</p><h2>A mix of<br /><em>technical + creative.</em></h2></div><Link href="/about" className="text-link">About me <ArrowUpRight size={15} /></Link></div><div className="toolkit-row"><div className="toolkit-group bento-large"><Code2 className="bento-icon" size={23} /><h3>Software Development</h3><p>Full-stack applications, backend systems, APIs, and practical tools.</p><div>{skillGroups.flatMap(g => g.items).slice(0, 5).map(item => <span key={item}>{item}</span>)}</div></div><div className="toolkit-group"><Palette className="bento-icon" size={23} /><h3>UI / UX</h3><p>Interfaces that feel clear, friendly, and worth using.</p><div><span>Design</span><span>Prototyping</span></div></div><div className="toolkit-group"><Bot className="bento-icon" size={23} /><h3>AI & Exploration</h3><p>Experimenting with AI-powered products and new ways to build.</p><div><span>AI</span><span>Automation</span></div></div><div className="toolkit-group"><ShieldCheck className="bento-icon" size={23} /><h3>Cybersecurity</h3><p>Security-minded development and curiosity about how systems break.</p><div><span>Security</span><span>Linux</span></div></div></div></section>
       <section className="closing-note content-section"><div className="closing-sparkle">✦</div><p className="eyebrow">LET'S BUILD SOMETHING</p><h2>Have an idea?<br /><em>Let's make it real.</em></h2><Link href="/contact" className="button-primary">Start a conversation <ArrowUpRight size={16} /></Link></section>
     </div>
   );
