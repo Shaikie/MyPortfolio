@@ -1,97 +1,19 @@
-/* Graphite Field Notes: content model keeps evidence, links, and future case studies configurable. */
-export type Project = {
-  name: string;
-  slug: string;
-  category: "Curated" | "Lab" | "Source";
-  description: string;
-  status: string;
-  year: string;
-  technologies: string[];
-  featured?: boolean;
-  github?: string;
-  live?: string;
-  problem: string;
-  solution: string;
-  architecture: string;
-  implementation: string;
-  challenges: string;
-  lessons: string;
-};
+export type Project = { name:string; slug:string; category:"Featured"|"Product"|"Experiment"; description:string; status:string; year:string; technologies:string[]; featured?:boolean; github?:string; live?:string; problem:string; solution:string; architecture:string; implementation:string; challenges:string; lessons:string; };
 
 export const projects: Project[] = [
-  {
-    name: "PractiLink",
-    slug: "practilink",
-    category: "Curated",
-    description: "A project record awaiting verified details from the repository owner.",
-    status: "Content needed",
-    year: "—",
-    technologies: ["Technology stack to confirm"],
-    featured: true,
-    problem: "Add the verified problem statement here.",
-    solution: "Add a concise description of what was built here.",
-    architecture: "Add the system architecture, services, and data flow here.",
-    implementation: "Add the parts personally implemented here.",
-    challenges: "Add verified engineering challenges here.",
-    lessons: "Add lessons learned and next steps here.",
-  },
-  {
-    name: "MediFind Tanzania",
-    slug: "medifind-tanzania",
-    category: "Curated",
-    description: "A project record awaiting verified details from the repository owner.",
-    status: "Content needed",
-    year: "—",
-    technologies: ["Technology stack to confirm"],
-    featured: true,
-    problem: "Add the verified problem statement here.",
-    solution: "Add a concise description of what was built here.",
-    architecture: "Add the system architecture, services, and data flow here.",
-    implementation: "Add the parts personally implemented here.",
-    challenges: "Add verified engineering challenges here.",
-    lessons: "Add lessons learned and next steps here.",
-  },
-  {
-    name: "DarCommute AI",
-    slug: "darcommute-ai",
-    category: "Lab",
-    description: "An experiment record awaiting verified details, links, and outcomes.",
-    status: "Content needed",
-    year: "—",
-    technologies: ["Technology stack to confirm"],
-    problem: "Add the verified problem statement here.",
-    solution: "Add a concise description of what was built here.",
-    architecture: "Add the system architecture, services, and data flow here.",
-    implementation: "Add the parts personally implemented here.",
-    challenges: "Add verified engineering challenges here.",
-    lessons: "Add lessons learned and next steps here.",
-  },
-  {
-    name: "BiasharaSmart",
-    slug: "biasharasmart",
-    category: "Source",
-    description: "A repository candidate awaiting curation and verified project notes.",
-    status: "To review",
-    year: "—",
-    technologies: ["Repository data to confirm"],
-    problem: "Add the verified problem statement here.",
-    solution: "Add a concise description of what was built here.",
-    architecture: "Add the system architecture, services, and data flow here.",
-    implementation: "Add the parts personally implemented here.",
-    challenges: "Add verified engineering challenges here.",
-    lessons: "Add lessons learned and next steps here.",
-  },
+{ name:"PractiLink", slug:"practilink", category:"Featured", description:"A practical-training and internship management platform for applications, authorization, configurable workflows, placement, supervision, and operational coordination.", status:"Live", year:"2026", technologies:["Laravel","PHP","MySQL","AdminLTE","REST APIs","RBAC"], featured:true, github:"https://github.com/Shaikie/PractiLink", live:"https://practilink-production.up.railway.app", problem:"Practical training and internship administration involves students, administrators, HR staff, supervisors, applications, review stages, placement, and many permission boundaries.", solution:"A centralized platform with role-aware workflows for applications, review, placement, supervision, and lifecycle tracking.", architecture:"Laravel application backed by a relational database, with policy-driven authorization, transactional application lifecycle services, configurable workflow stages, placement allocation, and workflow history.", implementation:"Built and evolved authorization, the student application lifecycle, workflow routing, placement logic, capacity and waiting-list handling, supervisor allocation, and AdminLTE interfaces.", challenges:"Keeping authorization, state transitions, placement rules, and workflow history consistent while preventing unauthorized access to other students' records.", lessons:"Complex business systems benefit from explicit state machines, centralized authorization, transactional operations, and auditable history." },
+{ name:"MediFind Tanzania", slug:"medifind-tanzania", category:"Featured", description:"A medicine and pharmacy discovery platform connecting patients with verified pharmacies, medicine availability, pricing, and medicine requests across Tanzania.", status:"In development", year:"2026", technologies:["React 19","Vite","Laravel 13","PHP","REST API","Sanctum","MySQL"], featured:true, github:"https://github.com/Shaikie/MediFind", problem:"Finding a specific medicine and knowing which nearby pharmacy has it can be difficult when availability and pricing vary.", solution:"Public pharmacy and medicine discovery, availability and price comparison, medicine requests, pharmacy inventory management, and administrative approval workflows.", architecture:"Laravel 13 REST API with Sanctum authentication and a React 19 + Vite single-page frontend communicating through the API.", implementation:"Worked across backend and frontend to build role-aware patient, pharmacy, and admin experiences, medicine and inventory workflows, authentication, and API-driven UI.", challenges:"Designing a clean React-to-Laravel API boundary while supporting different workflows for patients, pharmacy owners, and administrators.", lessons:"A useful product starts with a real problem, then turns it into clear roles, data models, APIs, and focused interfaces." },
+{ name:"FixNow", slug:"fixnow", category:"Featured", description:"An on-demand home emergency technician directory for Dar es Salaam, helping people find verified plumbers, electricians, locksmiths, and other technicians nearby.", status:"Working product", year:"2026", technologies:["React 19","Vite","Tailwind CSS v4","Laravel 13","PostgreSQL","PWA","Leaflet"], featured:true, github:"https://github.com/Shaikie/fixnow", problem:"During a home emergency, finding a trustworthy technician nearby, understanding expected pricing, and communicating quickly can be difficult.", solution:"A location-aware platform for technician discovery, profiles, pricing, emergency requests, status tracking, messaging, reviews, favourites, notifications, and verification.", architecture:"Laravel 13 REST API with PostgreSQL, Sanctum authentication, RBAC and policies, paired with a React 19 + Vite + Tailwind PWA frontend.", implementation:"Built product flows spanning customer discovery and emergency requests, technician availability and jobs, admin verification, maps, messaging, reviews, and PWA behavior.", challenges:"Combining location discovery, role-specific workflows, private verification documents, messaging, rate limiting, and PWA behavior into one coherent product.", lessons:"Real-world applications are interacting workflows. Good architecture keeps authentication, authorization, data access, and UI responsibilities separated." },
+{ name:"MEGASIS", slug:"megasis", category:"Product", description:"A selected MEGASIS web project from an earlier stage of my development journey, representing my transition into practical content-driven web applications.", status:"Selected archive", year:"2025", technologies:["PHP","MySQL","HTML","CSS","JavaScript"], github:"https://github.com/Shaikie/megasis_news", problem:"Content-focused applications need straightforward interfaces and dependable database-backed workflows.", solution:"A practical web experience built around content, presentation, persistence, and the fundamentals of full-stack web development.", architecture:"Server-side web application with database-backed content and browser interfaces.", implementation:"Used the project to strengthen PHP, database, frontend, and application-development fundamentals.", challenges:"Moving from isolated programming exercises toward complete applications with persistent data and user-facing workflows.", lessons:"Early projects show the progression from learning syntax to understanding applications as complete systems." }
 ];
 
 export const skillGroups = [
-  { label: "Programming", items: ["PHP", "JavaScript", "TypeScript", "Python", "Java", "SQL"], note: "Confirm current level and active usage." },
-  { label: "Frameworks", items: ["Laravel", "React", "Next.js"], note: "Confirm which frameworks belong in the public profile." },
-  { label: "Systems", items: ["Git", "GitHub", "Linux", "VS Code"], note: "Add deployment platforms only when verified." },
+{label:"Programming",items:["PHP","JavaScript","TypeScript","Python","Java","SQL","HTML","CSS"],note:"Languages used across coursework, products, experiments, and web development."},
+{label:"Frameworks & Tools",items:["Laravel","React","Vite","Tailwind CSS","Node.js","Git","GitHub","VS Code"],note:"Core tools behind my current application-development workflow."},
+{label:"Systems & Platforms",items:["Linux","MySQL","PostgreSQL","REST APIs","Vercel","Railway","Netlify","Docker"],note:"Development, deployment, databases, and application infrastructure."},
+{label:"Exploration",items:["AI","Cybersecurity","UI/UX","Automation","System Design","PWA"],note:"Areas I actively explore beyond day-to-day application development."}
 ];
 
-export const labNotes = [
-  ["01", "AI experiments", "Small investigations into practical interfaces, agents, and applied machine intelligence."],
-  ["02", "Security practice", "A place for verified cybersecurity learning, defensive experiments, and write-ups."],
-  ["03", "Systems work", "Linux, automation, scripts, and the infrastructure details that make software dependable."],
-  ["04", "Prototypes", "Early ideas kept visible: testable, unfinished, and useful as evidence of how thinking evolves."],
-];
+export const labNotes = [["01","AI experiments","Exploring practical AI, automation, agents, and ways intelligent systems can become useful products."],["02","Security practice","Learning how applications and systems fail, how to reason about security, and how to build with security in mind."],["03","Systems work","Linux, APIs, databases, deployment, debugging, and the infrastructure behind dependable software."],["04","Design experiments","UI/UX, visual systems, prototypes, and the challenge of making technically capable software pleasant to use."]];
+
+export const about = { headline:"A computer science student who learns by building.", paragraphs:["I'm a computer science student and developer based in Tanzania, interested in the space where software engineering, cybersecurity, AI, and design meet.","My development journey has been practical. I started with programming and web-development fundamentals, then moved deeper into PHP and Laravel, databases, APIs, Linux, and full-stack application architecture. More recently, I've been working heavily with React and TypeScript while continuing to explore AI and cybersecurity.","I prefer building systems around real problems rather than only making demos. PractiLink, MediFind, and FixNow pushed me to think about users, roles, data, authorization, workflows, deployment, and what happens when software has to behave like a real product.","I'm still learning, and that's part of the point. This portfolio is a record of that progression: what I've built, what I'm learning, the problems I've wrestled with, and the ideas I'm still exploring."] };
