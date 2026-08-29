@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { projects } from "@/lib/portfolio";
 
-const filters = ["All", "Curated", "Lab", "Source"] as const;
+const filters = ["All", "Featured", "Product", "Experiment"] as const;
 
 export default function Projects() {
   const [filter, setFilter] = useState<typeof filters[number]>("All");

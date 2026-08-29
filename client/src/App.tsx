@@ -1,7 +1,8 @@
 /* Graphite Field Notes: global routing shell with an editorial index rail and instrument-like navigation. */
-import { Route, Switch, useLocation } from "wouter";
+import { Link, Route, Switch, useLocation } from "wouter";
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -18,6 +19,21 @@ const navItems = [
   ["05", "Contact", "/contact"],
 ];
 
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  if (!toggleTheme) return null;
+  return (
+    <button
+      className="theme-toggle"
+      onClick={toggleTheme}
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      style={{ border: 0, width: 40, height: 40, borderRadius: "50%", display: "grid", placeItems: "center", background: "white", boxShadow: "0 10px 28px rgba(30,41,59,.08)" }}
+    >
+      {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+    </button>
+  );
+}
+
 function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
@@ -31,17 +47,17 @@ function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="site-shell">
       <aside className="index-rail" aria-label="Portfolio index">
-        <a href="/" className="brand-lockup" aria-label="Shaikie home">
+        <Link href="/" className="brand-lockup" aria-label="Shaikie home">
           <span className="brand-mark"><span>S</span><i /></span>
           <span className="brand-name">SHAIKIE</span>
-        </a>
+        </Link>
         <div className="rail-rule" />
         <p className="rail-caption">PERSONAL SYSTEMS<br />/ FIELD NOTES</p>
         <nav className="rail-nav">
           {navItems.map(([number, label, href]) => (
-            <a key={href} href={href} className={location === href ? "active" : ""}>
+            <Link key={href} href={href} className={location === href ? "active" : ""}>
               <span>{number}</span>{label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="rail-footer">
@@ -52,15 +68,18 @@ function Layout({ children }: { children: ReactNode }) {
       </aside>
 
       <header className="mobile-header">
-        <a href="/" className="brand-lockup" aria-label="Shaikie home">
+        <Link href="/" className="brand-lockup" aria-label="Shaikie home">
           <span className="brand-mark"><span>S</span><i /></span>
           <span className="brand-name">SHAIKIE</span>
-        </a>
-        <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Close navigation" : "Open navigation"}>
-          {open ? <X size={21} /> : <Menu size={21} />}
-        </button>
+        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <ThemeToggle />
+          <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Close navigation" : "Open navigation"}>
+            {open ? <X size={21} /> : <Menu size={21} />}
+          </button>
+        </div>
       </header>
-      {open && <nav className="mobile-nav">{navItems.map(([number, label, href]) => <a key={href} href={href}><span>{number}</span>{label}<ArrowUpRight size={16} /></a>)}</nav>}
+      {open && <nav className="mobile-nav">{navItems.map(([number, label, href]) => <Link key={href} href={href}><span>{number}</span>{label}<ArrowUpRight size={16} /></Link>)}</nav>}
 
       <main className="content-canvas">{children}</main>
     </div>
