@@ -10,6 +10,8 @@ const badges = [
   { label: "AI Explorer", icon: Bot, className: "badge-four" },
 ];
 
+const previewImage = (slug: string) => slug === "practilink" ? "https://image.thum.io/get/width/1400/crop/850/noanimate/https://practilink-production.up.railway.app/login" : undefined;
+
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
 
@@ -51,7 +53,7 @@ export default function Home() {
           {featured.map((project, index) => (
             <Link href={`/projects/${project.slug}`} className={`project-card ${index === 1 ? "project-card-offset" : ""}`} key={project.slug}>
               <div className="card-top"><span className="card-index">0{index + 1}</span><span className="tag">{project.category}</span></div>
-              <div className="card-body"><div className={`card-image project-art project-art-${index}`}><span>{project.status}</span></div><h3>{project.name}</h3><p>{project.description}</p></div>
+              <div className="card-body"><div className={`card-image project-art project-art-${index}`} style={previewImage(project.slug) ? { backgroundImage: `linear-gradient(180deg, rgba(15,23,42,.05), rgba(15,23,42,.35)), url(${previewImage(project.slug)})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}><span>{project.status}</span></div><h3>{project.name}</h3><p>{project.description}</p></div>
               <div className="card-footer"><span>View project</span><ArrowUpRight size={16} /></div>
             </Link>
           ))}
